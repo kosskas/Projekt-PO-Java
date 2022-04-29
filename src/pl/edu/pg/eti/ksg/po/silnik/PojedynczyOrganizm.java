@@ -20,7 +20,6 @@ public abstract class PojedynczyOrganizm implements Organizm{
 
     public void rozmnazanie(Organizm drugi){
         if (wiek > Swiat.WIEK_ROZMNAZANIA && drugi.GetWiek() > Swiat.WIEK_ROZMNAZANIA) {
-            System.out.println("KOLIZJA");
             for (int dy = -1; dy <= 1; dy++) {
                 for (int dx = -1; dx <= 1; dx++) {
                     Organizm dziecko = swiat.pobierzWspolrzedne(y + dy, x + dx);
@@ -42,12 +41,10 @@ public abstract class PojedynczyOrganizm implements Organizm{
         if (this.CzyOdbilAtak(atakujacy)) {
             System.out.println(rysowanie()+" zabil "+atakujacy.rysowanie()+'\n');
             atakujacy.smierc();
-            swiat.usunOrganizm(atakujacy);
         }
 	else {
             System.out.println(atakujacy.rysowanie()+" zabil "+rysowanie()+'\n');
             this.smierc();
-            swiat.usunOrganizm(this);
         }
     }
     public void nowaTura(){
@@ -79,5 +76,17 @@ public abstract class PojedynczyOrganizm implements Organizm{
     }
     public int GetWiek(){
         return wiek;
+    }
+    @Override
+    public int porownajOrganizmy(Organizm drugi){
+        if(inicjatywa > drugi.GetInicjatywa())
+            return 1;
+        if(inicjatywa == drugi.GetInicjatywa()){
+            if(wiek > drugi.GetWiek())
+                return 1;
+            else
+                return 0;
+        }
+        return 0;
     }
 }

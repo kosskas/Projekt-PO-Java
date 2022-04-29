@@ -19,4 +19,5 @@ public interface Organizm {
     int GetSila();
     int GetInicjatywa();
     int GetWiek();
+    int porownajOrganizmy(Organizm drugi);
 }

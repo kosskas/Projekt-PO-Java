@@ -19,6 +19,7 @@ public abstract class Zwierze extends PojedynczyOrganizm{
         nextX = x;
     }
     public void akcja(){
+        System.out.println(rysowanie()+" wykonuje ruch");
         nowaPozycja();
         Organizm kolizyjny = swiat.pobierzWspolrzedne(nextY, nextX);
         wykonunajRuchNa(kolizyjny);
@@ -36,7 +37,6 @@ public abstract class Zwierze extends PojedynczyOrganizm{
             prevX = x;
             prevY = y;
         }
-        System.out.println(rysowanie()+" idzie na "+nextY+" "+nextX);
     }
     public void wycofajSie(){
         nextX = prevX;
@@ -45,13 +45,12 @@ public abstract class Zwierze extends PojedynczyOrganizm{
     public void wykonunajRuchNa(Organizm kolizyjny){
         if (kolizyjny != null && kolizyjny != this) {
             if (porownajGatunek(kolizyjny)) {
-                System.out.println("wykonunajRuchNa");
                 rozmnazanie(kolizyjny);
                 nextX = x;
                 nextY = y;
             }
             else {
-                System.out.println("wykonunajRuchNa");
+              //  System.out.println("ATAk");
                 kolizyjny.kolizja(this);
             }
         }

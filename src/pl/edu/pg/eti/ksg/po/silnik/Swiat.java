@@ -1,8 +1,9 @@
 package pl.edu.pg.eti.ksg.po.silnik;
 
 import java.sql.Time;
-import java.util.List;
-import java.util.Random;
+import java.text.Collator;
+import java.util.*;
+
 public class Swiat {
     public static final int WIEK_ROZMNAZANIA = 2;
     public static final Random rand = new Random();
@@ -10,6 +11,7 @@ public class Swiat {
     private int wymX;
     private int wymY;
     private List<Organizm> organizm;
+    private List<Organizm> dzieci = new LinkedList<>();
     private int tura;
     private int seed;
     private boolean gra;
@@ -109,11 +111,14 @@ public class Swiat {
 
     public void wykonajTure(){
         tura++;
-        for (Organizm N : organizm) {
+        zarzadzajOrganizmami();
+
+        for(Organizm N : organizm){
             N.nowaTura();
-            if(N.GetWiek() > 1)
+            if(N.GetWiek() > 1 && N.CzyZyje())
                 N.akcja();
         }
+
     }
 
     public void symuluj(int liczbaRund){
@@ -143,9 +148,15 @@ public class Swiat {
 
     public void dodajOrganizm(Organizm nowy){
         nowy.SetSwiat(this);
-        organizm.add(nowy);
+        dzieci.add(nowy);
     }
-    public void usunOrganizm(Organizm stary){
-        organizm.remove(stary);
+
+    private void zarzadzajOrganizmami(){
+        organizm.removeIf(N -> !N.CzyZyje());
+        for (Organizm N :dzieci) {
+            organizm.add(N);
+        }
+        dzieci.clear();
+        organizm.sort((A, B) -> A.porownajOrganizmy(B));
     }
 }

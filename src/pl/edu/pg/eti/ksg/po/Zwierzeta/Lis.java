@@ -1,4 +1,4 @@
-package pl.edu.pg.eti.ksg.po.Zwierze;
+package pl.edu.pg.eti.ksg.po.Zwierzeta;
 
 import pl.edu.pg.eti.ksg.po.silnik.Organizm;
 import pl.edu.pg.eti.ksg.po.silnik.Zwierze;
