@@ -34,6 +34,14 @@ public class Swiat {
         tura = runda;
     }
 
+    public char[][] GetPlansza(){
+        return plansza;
+    }
+
+    public char GetPos(int Y, int X){
+        return plansza[Y][X];
+    }
+
     private void wyczyscMape(){
         for(int y = 0; y < wymY; y++){
             for(int x = 0; x < wymX; x++){
@@ -120,12 +128,15 @@ public class Swiat {
         }
 
     }
+    public void nowaTura(){
+        rysujSwiat();
+        wykonajTure();
+    }
 
     public void symuluj(int liczbaRund){
         for (int i = tura; i < liczbaRund && gra; i++) {
             System.out.println("\tTura "+i);
-            rysujSwiat();
-            wykonajTure();
+            nowaTura();
         }
     }
 
