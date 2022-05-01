@@ -11,8 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Symulacja {
-    private JFrame frame = new JFrame("App");
+    private JFrame frame = new JFrame();
     private JButton tura;
+    private JButton zapis;
+    private JButton odczyt;
     private JPanel panel = new JPanel();
     private JButton[][] arr;
     private List<Organizm> O = dodajOrganizmy();
@@ -44,9 +46,13 @@ public class Symulacja {
 
     private void inicjujGuziki(){
         arr = new JButton[Y][X];
-        tura = new JButton();
 
-        panel.setLayout(new GridLayout(Y, X));
+        tura = new JButton();
+        zapis = new JButton();
+        odczyt = new JButton();
+
+        panel.setLayout(new GridLayout(0, X));
+
         for(int y = 0; y < Y; y++){
             for(int x = 0; x < X; x++){
                 arr[y][x] = new JButton();
@@ -57,7 +63,13 @@ public class Symulacja {
 
         tura.addActionListener(new SluchaczNowejTury());
         tura.setText("Nowa Tura!");
+        zapis.setText("Zapisz");
+        zapis.addActionListener(new SluchaczZapisu());
+
+        odczyt.addActionListener(new SluchaczOdczytu());
         panel.add(tura);
+        panel.add(zapis);
+        panel.add(odczyt);
     }
 
     private class SluchaczNowejTury implements ActionListener{
@@ -65,6 +77,19 @@ public class Symulacja {
         public void actionPerformed(ActionEvent e) {
             S.nowaTura();
             aktualizujMape();
+            frame.setTitle("Tura "+S.GetTura());
+        }
+    }
+    private class SluchaczZapisu implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            S.zapiszSwiat();
+        }
+    }
+    private class SluchaczOdczytu implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            S.wczytajSwiat();
         }
     }
 

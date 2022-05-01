@@ -26,8 +26,8 @@ public class Antylopa extends Zwierze {
     public void nowaPozycja() {
         int dx = 1;
         int dy = 1;
-        dx = Swiat.rand.nextInt() % 5 -2;
-        dy = Swiat.rand.nextInt() % 5 -2;
+        dx = Math.abs(Swiat.rand.nextInt()) % 5 -2;
+        dy = Math.abs(Swiat.rand.nextInt()) % 5 -2;
         if (swiat.sprawdzPoprawnoscWspolrzednych(y+ dy, x + dx)) {
             nextX = x + dx;
             nextY = y + dy;
@@ -38,7 +38,7 @@ public class Antylopa extends Zwierze {
 
     @Override
     public void kolizja(Organizm atakujacy) {
-        if(Swiat.rand.nextInt() % 100 <= 50){
+        if(Math.abs(Swiat.rand.nextInt()) % 100 <= 50){
             nowaPozycja();
             Organizm kolizyjny = swiat.pobierzWspolrzedne(nextY, nextX);
             if(kolizyjny != null && kolizyjny != this)

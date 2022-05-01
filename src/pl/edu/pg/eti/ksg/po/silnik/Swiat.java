@@ -1,11 +1,15 @@
 package pl.edu.pg.eti.ksg.po.silnik;
 
-import java.sql.Time;
-import java.text.Collator;
+import java.io.*;
 import java.util.*;
 
 public class Swiat {
     public static final int WIEK_ROZMNAZANIA = 2;
+    public static final int SZANSA_JAGODY = 3;
+    public static final int SZANSA_BARSZCZ = 1;
+    public static final int SZANSA_MLECZ = 2;
+    public static final int SZANSA_GUARANA = 2;
+    public static final int SZANSA_TRAWA = 3;
     public static final Random rand = new Random();
     private char[][] plansza;
     private int wymX;
@@ -13,7 +17,7 @@ public class Swiat {
     private List<Organizm> organizm;
     private List<Organizm> dzieci = new LinkedList<>();
     private int tura;
-    private int seed;
+    private long seed;
     private boolean gra;
 
     public Swiat(int Y, int X, List<Organizm> L) {
@@ -21,14 +25,14 @@ public class Swiat {
         wymY = Y;
         plansza = new char[Y][X];
         dodajOrganizmy(L);
-        seed = 0;
+        seed = System.currentTimeMillis();
         tura = 0;
         gra = true;
         rand.setSeed(seed);
 
     }
 
-    public Swiat(int Y, int X, List<Organizm> L, int ziarno, int runda) {
+    public Swiat(int Y, int X, List<Organizm> L, long ziarno, int runda) {
         this(Y, X, L);
         seed = ziarno;
         tura = runda;
@@ -66,16 +70,36 @@ public class Swiat {
     }
 
     public void zapiszSwiat(){
-        System.out.println("[stan]");
-        System.out.println("MAPA "+ wymY+""+wymX);
-        System.out.print("SEED "+seed);
-        System.out.print("TURA "+tura);
-        System.out.println("[org]");
-        for(Organizm N : organizm) {
-            System.out.println(N.rysowanie()+" "+N.GetY()+" "+N.GetX()+" "+N.GetWiek()+"\n");
+        try {
+            PrintWriter zapis = new PrintWriter("zapis.txt", "UTF-8");
+            zapis.println("[stan]");
+            zapis.println("MAPA"+" "+ GetY()+" "+GetX());
+            zapis.println("SEED"+" "+seed);
+            zapis.println("TURA"+" "+tura);
+            zapis.println("[org]");
+            for(Organizm N : organizm) {
+                zapis.println(N.rysowanie()+" "+N.GetY()+" "+N.GetX()+" "+N.GetWiek());
+            }
+            zapis.println("[org]");
+            zapis.println("[stan]");
+            zapis.close();
+
+        }catch (IOException ex){}
+    }
+
+    public void wczytajSwiat(){
+        try{
+            FileInputStream odczyt = new FileInputStream("zapis.txt");
+            DataInputStream in = new DataInputStream(odczyt);
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String strLine, cmd[];
+            while ((strLine = br.readLine()) != null)   {
+                ///String[] tokens = strLine.split(" ");
+                System.out.println(strLine);
+            }
+            in.close();
         }
-        System.out.println("[org]");
-        System.out.println("[stan]");
+        catch (Exception ex){}
     }
 
     public void rysujSwiat(){
@@ -117,10 +141,12 @@ public class Swiat {
         return wymY;
     }
 
+    public int GetTura(){
+        return tura;
+    }
     public void wykonajTure(){
         tura++;
         zarzadzajOrganizmami();
-
         for(Organizm N : organizm){
             N.nowaTura();
             if(N.GetWiek() > 1 && N.CzyZyje())
@@ -145,6 +171,10 @@ public class Swiat {
             if (N.GetX() == x && N.GetY() == y && N.CzyZyje())
                 return N;
         }
+        for (Organizm M : dzieci){
+            if (M.GetX() == x && M.GetY() == y && M.CzyZyje())
+                return M;
+        }
         return null;
     }
 
@@ -163,10 +193,8 @@ public class Swiat {
     }
 
     private void zarzadzajOrganizmami(){
+        organizm.addAll(dzieci);
         organizm.removeIf(N -> !N.CzyZyje());
-        for (Organizm N :dzieci) {
-            organizm.add(N);
-        }
         dzieci.clear();
         organizm.sort((A, B) -> A.porownajOrganizmy(B));
     }

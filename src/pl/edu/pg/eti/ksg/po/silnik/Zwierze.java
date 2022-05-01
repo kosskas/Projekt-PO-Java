@@ -29,8 +29,8 @@ public abstract class Zwierze extends PojedynczyOrganizm{
     public void nowaPozycja(){
         int dx = 1;
         int dy = 1;
-        dx = Swiat.rand.nextInt() % 3 -1;
-        dy = Swiat.rand.nextInt() % 3 -1;;
+        dx = Math.abs(Swiat.rand.nextInt()) % 3 -1;
+        dy = Math.abs(Swiat.rand.nextInt()) % 3 -1;;
         if (swiat.sprawdzPoprawnoscWspolrzednych(y + dy, x + dx)) {
             nextX = x + dx;
             nextY = y + dy;
@@ -50,7 +50,6 @@ public abstract class Zwierze extends PojedynczyOrganizm{
                 nextY = y;
             }
             else {
-              //  System.out.println("ATAk");
                 kolizyjny.kolizja(this);
             }
         }

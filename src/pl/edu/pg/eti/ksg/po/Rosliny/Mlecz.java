@@ -3,13 +3,14 @@ package pl.edu.pg.eti.ksg.po.Rosliny;
 import pl.edu.pg.eti.ksg.po.Zwierzeta.Wilk;
 import pl.edu.pg.eti.ksg.po.silnik.Organizm;
 import pl.edu.pg.eti.ksg.po.silnik.Roslina;
+import pl.edu.pg.eti.ksg.po.silnik.Swiat;
 
 public class Mlecz extends Roslina {
     public Mlecz(int posY, int posX) {
         super(0);
         x = posX;
         y = posY;
-        szansaSiewu = 6;
+        szansaSiewu = Swiat.SZANSA_MLECZ;
     }
     public Mlecz(int posY, int posX, int wiek) {
         this(posY, posX);

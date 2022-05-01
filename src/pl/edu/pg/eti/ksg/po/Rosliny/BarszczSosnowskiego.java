@@ -2,6 +2,7 @@ package pl.edu.pg.eti.ksg.po.Rosliny;
 
 import pl.edu.pg.eti.ksg.po.silnik.Organizm;
 import pl.edu.pg.eti.ksg.po.silnik.Roslina;
+import pl.edu.pg.eti.ksg.po.silnik.Swiat;
 
 public class BarszczSosnowskiego extends Roslina {
     private Organizm[] sasiad = new Organizm[8];
@@ -9,7 +10,7 @@ public class BarszczSosnowskiego extends Roslina {
         super(10);
         x = posX;
         y = posY;
-        szansaSiewu = 1;
+        szansaSiewu = Swiat.SZANSA_BARSZCZ;
     }
     public BarszczSosnowskiego(int posY, int posX, int wiek) {
         this(posY, posX);
@@ -27,6 +28,7 @@ public class BarszczSosnowskiego extends Roslina {
                 sasiad[i].smierc();
             }
         }
+
         if(wiek > 1)
             super.akcja();
 
