@@ -10,6 +10,7 @@ public abstract class PojedynczyOrganizm implements Organizm{
     protected int x;
     protected int y;
     protected boolean zyje;
+    protected boolean wykonalRuch = false;
 
     public boolean CzyOdbilAtak(Organizm atakujacy){
         if(sila < atakujacy.GetSila())
@@ -49,6 +50,7 @@ public abstract class PojedynczyOrganizm implements Organizm{
     }
     public void nowaTura(){
         wiek++;
+        wykonalRuch = false;
     }
     public void SetSwiat(Swiat S){
         swiat = S;

@@ -4,35 +4,53 @@ import pl.edu.pg.eti.ksg.po.Rosliny.*;
 import pl.edu.pg.eti.ksg.po.Zwierzeta.*;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Symulacja {
-    private JFrame frame = new JFrame();
+    private final JFrame frame = new JFrame();
     private JButton tura;
     private JButton zapis;
     private JButton odczyt;
-    private JPanel panel = new JPanel();
+    private final JPanel mapa = new JPanel();
+    private final JPanel sterowanie = new JPanel();
+    private final JTextArea tekst = new JTextArea();
+    private final JSplitPane splitpanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+    private final JPanel SluchaczStrzalek = new JPanel();
     private JButton[][] arr;
-    private List<Organizm> O = dodajOrganizmy();
+    private List<Organizm> O;
     private  Swiat S;
     private int Y, X;
 
     public Symulacja(int Y, int X) {
         this.Y = Y;
         this.X = X;
-        S = new Swiat(Y, X, O);
+        S = new Swiat(Y, X, this);
+        O = dodajOrganizmy();
+        S.dodajOrganizmy(O);
         inicjujGuziki();
+
+        splitpanel.setLeftComponent(mapa);
+        splitpanel.setRightComponent(sterowanie);
+        SluchaczStrzalek.addKeyListener(new SluczaczRuchu());
+        splitpanel.setRightComponent(sterowanie); //
+
     }
 
     public void symuluj(){
-        frame.setContentPane(panel);
+        frame.setContentPane(splitpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // frame.add(splitpanel);
+       // frame.setSize(720,720);
         frame.pack();
         frame.setVisible(true);
+
     }
 
     private void aktualizujMape(){
@@ -45,31 +63,52 @@ public class Symulacja {
     }
 
     private void inicjujGuziki(){
+        mapa.setLayout(new GridLayout(Y+ 1, X));
+        InitMapa();
+        InitTura();
+        InitZapis();
+        InitOdczyt();
+        tekst.append("rtdetg");
+        tekst.setEditable(false);
+        sterowanie.add(tekst);
+    }
+
+    private void InitMapa(){
         arr = new JButton[Y][X];
-
-        tura = new JButton();
-        zapis = new JButton();
-        odczyt = new JButton();
-
-        panel.setLayout(new GridLayout(0, X));
 
         for(int y = 0; y < Y; y++){
             for(int x = 0; x < X; x++){
                 arr[y][x] = new JButton();
-                arr[y][x].setSize(1, 1);
-                panel.add(arr[y][x]);
+                arr[y][x].setFocusable(false);
+                mapa.add(arr[y][x]);
             }
         }
-
-        tura.addActionListener(new SluchaczNowejTury());
-        tura.setText("Nowa Tura!");
+    }
+    private void InitOdczyt(){
+        odczyt = new JButton();
+        odczyt.setFocusable(false);
+        odczyt.setText("Wczytaj");
+        odczyt.addActionListener(new SluchaczOdczytu());
+        sterowanie.add(odczyt);
+    }
+    private void InitZapis(){
+        zapis = new JButton();
+        zapis.setFocusable(false);
         zapis.setText("Zapisz");
         zapis.addActionListener(new SluchaczZapisu());
+        sterowanie.add(zapis);
+    }
+    private void InitTura(){
+        tura = new JButton();
+        tura.setFocusable(false);
+        tura.addActionListener(new SluchaczNowejTury());
+        tura.setText("Nowa Tura!");
+        tura.setBounds(new Rectangle(50, 10));
+        sterowanie.add(tura);
+    }
 
-        odczyt.addActionListener(new SluchaczOdczytu());
-        panel.add(tura);
-        panel.add(zapis);
-        panel.add(odczyt);
+    public void test(){
+        System.out.println("TEST");
     }
 
     private class SluchaczNowejTury implements ActionListener{
@@ -90,12 +129,44 @@ public class Symulacja {
         @Override
         public void actionPerformed(ActionEvent e) {
             S.wczytajSwiat();
+            S.rysujSwiat();
+            aktualizujMape();
+            frame.setTitle("Tura "+S.GetTura());
         }
     }
+    private class SluczaczRuchu implements KeyListener{
+        @Override
+        public void keyTyped(KeyEvent e) {}
 
-    private List<Organizm> dodajOrganizmy(){
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("Key pressed code=" + e.getKeyCode() + ", char=" + e.getKeyChar());
+            if(e.getKeyCode() == KeyEvent.VK_SPACE){
+                System.out.println("TEST");
+
+            }
+            //wczytajMenu();
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {}
+    }
+
+    public void nasluchujRuchu(){
+        splitpanel.remove(sterowanie);
+        splitpanel.setRightComponent(SluchaczStrzalek);
+        //SluchaczStrzalek.setFocusable(true);
+    }
+   public void wczytajMenu(){
+       splitpanel.remove(SluchaczStrzalek);
+       splitpanel.setRightComponent(sterowanie);
+   }
+
+
+    private List<Organizm> dodajOrganizmy() {
         List<Organizm> L = new LinkedList<>();
-        L.add(new Owca(0, 0));
+        L.add(new Czlowiek(0, 0, S));
+        // L.add(new Owca(0, 0));
         L.add(new Owca(1, 0));
         L.add(new Owca(0, 1));
         L.add(new BarszczSosnowskiego(4, 0));

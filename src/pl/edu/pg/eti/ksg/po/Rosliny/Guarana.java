@@ -16,7 +16,7 @@ public class Guarana extends Roslina {
         this.wiek = wiek;
     }
     public char rysowanie()  {
-        return '@';
+        return '&';
     }
 
     @Override

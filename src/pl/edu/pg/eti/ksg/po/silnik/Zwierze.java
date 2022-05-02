@@ -19,12 +19,15 @@ public abstract class Zwierze extends PojedynczyOrganizm{
         nextX = x;
     }
     public void akcja(){
-        System.out.println(rysowanie()+" wykonuje ruch");
-        nowaPozycja();
-        Organizm kolizyjny = swiat.pobierzWspolrzedne(nextY, nextX);
-        wykonunajRuchNa(kolizyjny);
-        x = nextX;
-        y = nextY;
+        if(wykonalRuch == false) {
+            System.out.println(rysowanie() + " wykonuje ruch");
+            nowaPozycja();
+            Organizm kolizyjny = swiat.pobierzWspolrzedne(nextY, nextX);
+            wykonunajRuchNa(kolizyjny);
+            x = nextX;
+            y = nextY;
+            wykonalRuch = true;
+        }
     }
     public void nowaPozycja(){
         int dx = 1;
