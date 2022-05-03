@@ -19,7 +19,7 @@ public class Czlowiek extends Zwierze{
         czasOczewiw = 0;
         czyMoze = true;
         swiat = wsk;
-        sym = swiat.GetSymulacja();
+        //sym = swiat.GetSymulacja();
     }
     public Czlowiek(int posY, int posX, int wiek, Swiat wsk) {
         this(posY, posX, wsk);

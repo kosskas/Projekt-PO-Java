@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d9f36d9-3175-460b-8070-509bf79c14e3" name="Changes" comment="Stan na 02.05.">
+    <list default="true" id="9d9f36d9-3175-460b-8070-509bf79c14e3" name="Changes" comment="Stan na 03.05.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczDodawaniaOrganizmu$SluchaczDodawaniaKonkretnegoOrganizmu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczDodawaniaOrganizmu$SluchaczDodawaniaKonkretnegoOrganizmu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczDodawaniaOrganizmu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczDodawaniaOrganizmu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczNowejTury.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczNowejTury.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczOdczytu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczOdczytu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczZapisu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczZapisu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Swiat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Swiat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Symulacja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Symulacja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zapis.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651522267614</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Stan na 03.05.">
+      <created>1651592320327</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1651592320327</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -229,7 +246,8 @@
     <MESSAGE value="Stan na 30.04" />
     <MESSAGE value="Stan na 01.05" />
     <MESSAGE value="Stan na 02.05." />
-    <option name="LAST_COMMIT_MESSAGE" value="Stan na 02.05." />
+    <MESSAGE value="Stan na 03.05." />
+    <option name="LAST_COMMIT_MESSAGE" value="Stan na 03.05." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

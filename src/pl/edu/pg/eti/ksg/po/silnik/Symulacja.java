@@ -37,7 +37,7 @@ public class Symulacja {
     public Symulacja(int Y, int X) {
         this.Y = Y;
         this.X = X;
-        S = new Swiat(Y, X, this);
+       // S = new Swiat(Y, X, this);
         O = dodajBazoweOrganizmy();
         S.dodajOrganizmy(O);
         sdo = new SluchaczDodawaniaOrganizmu[Y][X];
