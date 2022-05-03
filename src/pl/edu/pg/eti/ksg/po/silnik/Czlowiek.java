@@ -1,13 +1,10 @@
 package pl.edu.pg.eti.ksg.po.silnik;
 
-import java.util.Scanner;
-
 public class Czlowiek extends Zwierze{
     private int czasTrwania;
     private boolean czyAktywnaUmj;
     private int czasOczewiw;
     private boolean czyMoze ;
-    private Symulacja sym;
     public Czlowiek(int posY, int posX, Swiat wsk) {
         super(5, 4);
         x = posX;

@@ -8,11 +8,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
 
 public class Swiat {
-    //ruch czlowieka, listener wydarzen
+    //zaimplementowac ruch czlowieka, listener wydarzen
+    //zdebugowac dodawanie, barszcz i sortowanie
     ////////////////Organizmy/////////////////
     public static final int WIEK_ROZMNAZANIA = 2;
     public static final int SZANSA_JAGODY = 3;
@@ -32,10 +34,7 @@ public class Swiat {
     private boolean gra;
 
     //////////////Aplikacja/////////////
-    private JFrame okno = new JFrame();
-    private JButton nowaTura;
-    private JButton zapis;
-    private JButton odczyt;
+    private final JFrame okno = new JFrame();
     private JButton[][] elemMapy;
     private final JPanel mapa = new JPanel();
     private final JPanel sterowanie = new JPanel();
@@ -88,7 +87,7 @@ public class Swiat {
 
     public void zapiszSwiat(){
         try {
-            PrintWriter zapis = new PrintWriter("zapis.txt", "UTF-8");
+            PrintWriter zapis = new PrintWriter("zapis.txt", StandardCharsets.UTF_8);
             zapis.println("[stan]");
             zapis.println("MAPA"+" "+GetY()+" "+GetX());
             zapis.println("SEED"+" "+seed);
@@ -102,7 +101,7 @@ public class Swiat {
 
             zapis.close();
 
-        }catch (IOException ex){}
+        }catch (IOException ignored){}
     }
 
     public void wczytajSwiat(){
@@ -120,7 +119,7 @@ public class Swiat {
             wczytajGre(komendy);
             in.close();
         }
-        catch (Exception ex){}
+        catch (Exception ignored){}
     }
 
     public void rysujSwiat(){
@@ -179,12 +178,7 @@ public class Swiat {
     }
 
     public boolean sprawdzPoprawnoscWspolrzednych(int y, int x){
-        if (x < wymX && x >= 0 && y < wymY && y >= 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return x < wymX && x >= 0 && y < wymY && y >= 0;
     }
 
     public void dodajOrganizm(Organizm nowy){
@@ -196,44 +190,23 @@ public class Swiat {
         organizm.addAll(dzieci);
         organizm.removeIf(N -> !N.CzyZyje());
         dzieci.clear();
-        organizm.sort((A, B) -> A.porownajOrganizmy(B));
+        organizm.sort(Organizm::porownajOrganizmy);
     }
 
     public void dodajNowyOrganizmNa(int id, int y, int x){
         Organizm N = null;
-        switch (id){
-            case 0:
-                N = new Wilk(y, x);
-                break;
-            case 1:
-                N = new Owca(y, x);
-                break;
-            case 2:
-                N = new Zolw(y, x);
-                break;
-            case 3:
-                N = new Lis(y, x);
-                break;
-            case 4:
-                N = new Antylopa(y, x);
-                break;
-            case 5:
-                N = new Trawa(y, x);
-                break;
-            case 6:
-                N = new Mlecz(y, x);
-                break;
-            case 7:
-                N = new Guarana(y, x);
-                break;
-            case 8:
-                N = new WilczeJagody(y, x);
-                break;
-            case 9:
-                N = new BarszczSosnowskiego(y, x);
-                break;
-            default:
-                break;
+        switch (id) {
+            case 0 -> N = new Wilk(y, x);
+            case 1 -> N = new Owca(y, x);
+            case 2 -> N = new Zolw(y, x);
+            case 3 -> N = new Lis(y, x);
+            case 4 -> N = new Antylopa(y, x);
+            case 5 -> N = new Trawa(y, x);
+            case 6 -> N = new Mlecz(y, x);
+            case 7 -> N = new Guarana(y, x);
+            case 8 -> N = new WilczeJagody(y, x);
+            case 9 -> N = new BarszczSosnowskiego(y, x);
+            default -> {}
         }
         if(N != null){
             organizm.add(N);
@@ -249,7 +222,6 @@ public class Swiat {
         int runda = 0;
         int posX, posY, wiek;
         for (int i = 0; i < Gra.size(); i++) {
-
             if (Gra.get(i).equals("MAPA")) {
                 y = Integer.parseInt(Gra.get(i + 1));
                 x = Integer.parseInt(Gra.get(i + 2));
@@ -343,7 +315,6 @@ public class Swiat {
     private List<Organizm> dodajBazoweOrganizmy() {
         List<Organizm> L = new LinkedList<>();
         L.add(new Czlowiek(0, 0, this));
-        // L.add(new Owca(0, 0));
         L.add(new Owca(1, 0));
         L.add(new Owca(0, 1));
         L.add(new BarszczSosnowskiego(4, 0));
@@ -387,9 +358,9 @@ public class Swiat {
     private void inicjujGuziki(){
         mapa.setLayout(new GridLayout(wymY+ 1, wymX));
         InitMapa();
-        InitTura();
-        InitZapis();
-        InitOdczyt();
+        InitTuraGuzik();
+        InitZapisGuzik();
+        InitOdczytGuzik();
         // tekst.append("rtdetg");
         //tekst.setEditable(false);
         // sterowanie.add(tekst);
@@ -401,7 +372,9 @@ public class Swiat {
         splitpanel.setRightComponent(sterowanie);
         okno.setContentPane(splitpanel);
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        okno.setTitle("Symulator swiata");
         okno.pack();
+        okno.setSize(1280, 700);
     }
 
     private void InitMapa(){
@@ -416,24 +389,24 @@ public class Swiat {
         }
     }
 
-    private void InitOdczyt(){
-        odczyt = new JButton();
+    private void InitOdczytGuzik(){
+        JButton odczyt = new JButton();
         odczyt.setFocusable(false);
         odczyt.setText("Wczytaj");
         odczyt.addActionListener(new SluchaczOdczytu());
         sterowanie.add(odczyt);
     }
 
-    private void InitZapis(){
-        zapis = new JButton();
+    private void InitZapisGuzik(){
+        JButton zapis = new JButton();
         zapis.setFocusable(false);
         zapis.setText("Zapisz");
         zapis.addActionListener(new SluchaczZapisu());
         sterowanie.add(zapis);
     }
 
-    private void InitTura(){
-        nowaTura = new JButton();
+    private void InitTuraGuzik(){
+        JButton nowaTura = new JButton();
         nowaTura.setFocusable(false);
         nowaTura.addActionListener(new SluchaczNowejTury());
         nowaTura.setText("Nowa Tura!");
@@ -446,7 +419,7 @@ public class Swiat {
         public void actionPerformed(ActionEvent e) {
             nowaTura();
             aktualizujMape();
-            okno.setTitle("Tura "+GetTura());
+            okno.setTitle("Symulator swiata - Tura "+GetTura());
         }
     }
 
@@ -469,13 +442,12 @@ public class Swiat {
 
     private class SluchaczDodawaniaOrganizmu implements ActionListener{
         private final int y, x;
-        private final JPanel test;
         private final JButton[] nowyOrg;
         private final JFrame dodawanie = new JFrame();
         public SluchaczDodawaniaOrganizmu(int y, int x){
             this.y = y;
             this.x = x;
-            test = new JPanel();
+            JPanel panel_dodawania = new JPanel();
             nowyOrg = new JButton[10];
             for(int i = 0; i < 10; i++)
                 nowyOrg[i] = new JButton();
@@ -490,10 +462,12 @@ public class Swiat {
             nowyOrg[8].setText("Wilcze Jagody");
             nowyOrg[9].setText("Barszcz");
             for(int i = 0; i < 10; i++){
-                test.add(nowyOrg[i]);
+                panel_dodawania.add(nowyOrg[i]);
             }
+            panel_dodawania.setLayout(new GridLayout(10, 1));
             dodawanie.pack();
-            dodawanie.add(test);
+            dodawanie.setSize(300, 400);
+            dodawanie.add(panel_dodawania);
             dodawanie.setTitle("Dodaj organizm");
             dodawanie.setAlwaysOnTop(true);
             dodawanie.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -501,17 +475,9 @@ public class Swiat {
         @Override
         public void actionPerformed(ActionEvent e) {
             for(int i = 0; i < 10; i++){
-                test.add(nowyOrg[i]);
                 nowyOrg[i].addActionListener(new SluchaczDodawaniaKonkretnegoOrganizmu(i));
             }
-            test.setLayout(new GridLayout(10, 1));
-            dodawanie.pack();
-            dodawanie.add(test);
-            dodawanie.setTitle("Dodaj organizm");
-            dodawanie.setAlwaysOnTop(true);
             dodawanie.setVisible(true);
-            dodawanie.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
         }
         private class SluchaczDodawaniaKonkretnegoOrganizmu implements ActionListener{
             private final int id;

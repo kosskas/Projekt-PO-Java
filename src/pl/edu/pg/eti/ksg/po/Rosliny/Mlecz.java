@@ -1,6 +1,5 @@
 package pl.edu.pg.eti.ksg.po.Rosliny;
 
-import pl.edu.pg.eti.ksg.po.Zwierzeta.Wilk;
 import pl.edu.pg.eti.ksg.po.silnik.Organizm;
 import pl.edu.pg.eti.ksg.po.silnik.Roslina;
 import pl.edu.pg.eti.ksg.po.silnik.Swiat;

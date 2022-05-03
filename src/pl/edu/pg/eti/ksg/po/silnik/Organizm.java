@@ -11,7 +11,6 @@ public interface Organizm {
     void nowaTura();
     void SetSwiat(Swiat S);
     void SetSila(int wartosc);
-    void SetWiek(int wartosc);
     boolean CzyZyje();
     boolean porownajGatunek(Organizm drugi);
     int GetX();

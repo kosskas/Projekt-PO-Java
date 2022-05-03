@@ -1,7 +1,5 @@
 package pl.edu.pg.eti.ksg.po.silnik;
 
-import pl.edu.pg.eti.ksg.po.Main;
-
 public abstract class PojedynczyOrganizm implements Organizm{
     protected int sila;
     protected int inicjatywa;
@@ -57,9 +55,6 @@ public abstract class PojedynczyOrganizm implements Organizm{
     }
     public void SetSila(int wartosc){
         sila = wartosc;
-    }
-    public void SetWiek(int wartosc){
-        wiek = wartosc;
     }
     public boolean CzyZyje(){
         return zyje;

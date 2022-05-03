@@ -1,7 +1,5 @@
 package pl.edu.pg.eti.ksg.po.silnik;
 
-import java.util.Random;
-
 public abstract class Zwierze extends PojedynczyOrganizm{
     protected int nextX;
     protected int nextY;
@@ -19,7 +17,7 @@ public abstract class Zwierze extends PojedynczyOrganizm{
         nextX = x;
     }
     public void akcja(){
-        if(wykonalRuch == false) {
+        if(!wykonalRuch) {
             System.out.println(rysowanie() + " wykonuje ruch");
             nowaPozycja();
             Organizm kolizyjny = swiat.pobierzWspolrzedne(nextY, nextX);

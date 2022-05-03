@@ -9,7 +9,7 @@ public abstract class Roslina extends PojedynczyOrganizm{
         zyje = true;
     }
     public void akcja(){
-        if(wykonalRuch == false) {
+        if(!wykonalRuch) {
             if (Math.abs(Swiat.rand.nextInt()) % 100 <= szansaSiewu)
                 rozmnazanie(this);
             wykonalRuch = true;

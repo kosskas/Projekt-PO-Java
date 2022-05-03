@@ -5,7 +5,7 @@ import pl.edu.pg.eti.ksg.po.silnik.Roslina;
 import pl.edu.pg.eti.ksg.po.silnik.Swiat;
 
 public class BarszczSosnowskiego extends Roslina {
-    private Organizm[] sasiad = new Organizm[8];
+    private final Organizm[] sasiad = new Organizm[8];
     public BarszczSosnowskiego(int posY, int posX) {
         super(10);
         x = posX;
@@ -21,7 +21,7 @@ public class BarszczSosnowskiego extends Roslina {
     }
     @Override
     public void akcja(){
-        GetSasiedz();
+        GetSasiedzi();
         for(int i = 0; i < 8; i++){
             if(sasiad[i] != null && !super.porownajGatunek(sasiad[i])){
                 System.out.println(sasiad[i].rysowanie()+" ginie od barszczu");
@@ -50,14 +50,14 @@ public class BarszczSosnowskiego extends Roslina {
     public Organizm stworzNowy(int nowyY, int nowyX) {
         return new BarszczSosnowskiego(nowyY, nowyX);
     }
-    private void GetSasiedz(){
+    private void GetSasiedzi(){
         int x =0;
         for(int dy = -1; dy <= 1; dy++){
             for(int dx = -1; dx <= 1; dx++) {
                 if(dy == 0 && dx ==0)
                     continue;
                 sasiad[x] = swiat.pobierzWspolrzedne(y + dy, x + dx);
-
+                x++;
             }
         }
     }
