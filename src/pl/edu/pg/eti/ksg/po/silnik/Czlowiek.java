@@ -29,7 +29,7 @@ public class Czlowiek extends Zwierze{
     @Override
     public void nowaPozycja(){
         int dy = 0, dx= 1;
-        sym.test();
+       // sym.test();
         //sym.nasluchujRuchu();
         if (swiat.sprawdzPoprawnoscWspolrzednych(x + dx, y + dy)) {
             nextX = x + dx;

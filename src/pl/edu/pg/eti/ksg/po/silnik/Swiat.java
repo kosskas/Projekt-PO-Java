@@ -48,7 +48,7 @@ public class Swiat {
     private void wyczyscMape(){
         for(int y = 0; y < wymY; y++){
             for(int x = 0; x < wymX; x++){
-                plansza[y][x] = '.';
+                plansza[y][x] = ' ';
             }
         }
     }
@@ -210,6 +210,49 @@ public class Swiat {
         organizm.removeIf(N -> !N.CzyZyje());
         dzieci.clear();
         organizm.sort((A, B) -> A.porownajOrganizmy(B));
+    }
+
+    public void dodajNowyOrganizmNa(int id, int y, int x){
+        Organizm N = null;
+        switch (id){
+            case 0:
+                N = new Wilk(y, x);
+                break;
+            case 1:
+                N = new Owca(y, x);
+                break;
+            case 2:
+                N = new Zolw(y, x);
+                break;
+            case 3:
+                N = new Lis(y, x);
+                break;
+            case 4:
+                N = new Antylopa(y, x);
+                break;
+            case 5:
+                N = new Trawa(y, x);
+                break;
+            case 6:
+                N = new Mlecz(y, x);
+                break;
+            case 7:
+                N = new Guarana(y, x);
+                break;
+            case 8:
+                N = new WilczeJagody(y, x);
+                break;
+            case 9:
+                N = new BarszczSosnowskiego(y, x);
+                break;
+            default:
+                break;
+        }
+        if(N != null){
+            organizm.add(N);
+            N.SetSwiat(this);
+            System.out.println("Dodano "+N.rysowanie()+" na "+N.GetY()+" "+N.GetX());
+        }
     }
 
     private void wczytajGre(ArrayList<String> Gra){
