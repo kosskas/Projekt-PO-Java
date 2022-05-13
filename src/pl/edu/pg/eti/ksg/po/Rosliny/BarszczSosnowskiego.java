@@ -1,8 +1,8 @@
 package pl.edu.pg.eti.ksg.po.Rosliny;
 
-import pl.edu.pg.eti.ksg.po.silnik.Organizm;
-import pl.edu.pg.eti.ksg.po.silnik.Roslina;
-import pl.edu.pg.eti.ksg.po.silnik.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Roslina;
+import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
 
 public class BarszczSosnowskiego extends Roslina {
     private final Organizm[] sasiad = new Organizm[8];
@@ -51,13 +51,13 @@ public class BarszczSosnowskiego extends Roslina {
         return new BarszczSosnowskiego(nowyY, nowyX);
     }
     private void GetSasiedzi(){
-        int x =0;
+        int index =0;
         for(int dy = -1; dy <= 1; dy++){
             for(int dx = -1; dx <= 1; dx++) {
                 if(dy == 0 && dx ==0)
                     continue;
-                sasiad[x] = swiat.pobierzWspolrzedne(y + dy, x + dx);
-                x++;
+                sasiad[index] = swiat.pobierzWspolrzedne(y + dy, x + dx);
+                index++;
             }
         }
     }

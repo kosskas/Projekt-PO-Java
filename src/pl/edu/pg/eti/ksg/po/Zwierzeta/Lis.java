@@ -1,7 +1,7 @@
 package pl.edu.pg.eti.ksg.po.Zwierzeta;
 
-import pl.edu.pg.eti.ksg.po.silnik.Organizm;
-import pl.edu.pg.eti.ksg.po.silnik.Zwierze;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Zwierze;
 
 public class Lis extends Zwierze {
     public Lis(int posY, int posX) {

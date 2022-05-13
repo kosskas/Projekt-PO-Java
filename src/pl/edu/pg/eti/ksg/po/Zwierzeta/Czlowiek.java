@@ -1,8 +1,12 @@
-package pl.edu.pg.eti.ksg.po.silnik;
+package pl.edu.pg.eti.ksg.po.Zwierzeta;
+
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Zwierze;
 
 import java.awt.event.KeyEvent;
 
-public class Czlowiek extends Zwierze{
+public class Czlowiek extends Zwierze {
     private int czasTrwania;
     private boolean czyAktywnaUmj;
     private int czasOczewiw;

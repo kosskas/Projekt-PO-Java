@@ -1,8 +1,8 @@
 package pl.edu.pg.eti.ksg.po.Rosliny;
 
-import pl.edu.pg.eti.ksg.po.silnik.Organizm;
-import pl.edu.pg.eti.ksg.po.silnik.Roslina;
-import pl.edu.pg.eti.ksg.po.silnik.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Roslina;
+import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
 
 public class Mlecz extends Roslina {
     public Mlecz(int posY, int posX) {

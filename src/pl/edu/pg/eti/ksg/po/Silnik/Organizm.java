@@ -1,4 +1,4 @@
-package pl.edu.pg.eti.ksg.po.silnik;
+package pl.edu.pg.eti.ksg.po.Silnik;
 
 public interface Organizm {
     boolean CzyOdbilAtak(Organizm atakujacy);

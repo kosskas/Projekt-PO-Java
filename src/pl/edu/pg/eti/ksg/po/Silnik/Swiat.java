@@ -1,4 +1,4 @@
-package pl.edu.pg.eti.ksg.po.silnik;
+package pl.edu.pg.eti.ksg.po.Silnik;
 
 import pl.edu.pg.eti.ksg.po.Rosliny.*;
 import pl.edu.pg.eti.ksg.po.Zwierzeta.*;
@@ -407,7 +407,6 @@ public class Swiat {
         odczyt.setFocusable(false);
         odczyt.setText("Wczytaj");
         odczyt.addActionListener(new SluchaczOdczytu());
-       // odczyt.setBackground(Color)
         sterowanie.add(odczyt);
     }
 
@@ -483,7 +482,7 @@ public class Swiat {
             dodawanie.pack();
             dodawanie.setSize(300, 400);
             dodawanie.add(panel_dodawania);
-            dodawanie.setTitle("Dodaj organizm");
+            dodawanie.setTitle("Dodaj na "+y+" "+x);
             dodawanie.setAlwaysOnTop(true);
             dodawanie.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         }
