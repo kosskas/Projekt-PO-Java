@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9d9f36d9-3175-460b-8070-509bf79c14e3" name="Changes" comment="Stan na 03.05">
+    <list default="true" id="9d9f36d9-3175-460b-8070-509bf79c14e3" name="Changes" comment="Stan na 03.05 U3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat$SluchaczNowejTury.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat$SluchaczNowejTury.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat$SluchaczOdczytu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat$SluchaczOdczytu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat$SluchaczZapisu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat$SluchaczZapisu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Swiat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczDodawaniaOrganizmu$SluchaczDodawaniaKonkretnegoOrganizmu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczDodawaniaOrganizmu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczNowejTury.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczOdczytu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja$SluchaczZapisu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Symulacja.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/Rosliny/BarszczSosnowskiego.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/Rosliny/BarszczSosnowskiego.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/Rosliny/Mlecz.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/Rosliny/Mlecz.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Organizm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Organizm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/PojedynczyOrganizm.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/PojedynczyOrganizm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Zwierze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SymulatorJava/pl/edu/pg/eti/ksg/po/silnik/Zwierze.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Rosliny/BarszczSosnowskiego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Rosliny/BarszczSosnowskiego.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Rosliny/Mlecz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/Rosliny/Mlecz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Czlowiek.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Organizm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Organizm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/PojedynczyOrganizm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/PojedynczyOrganizm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Roslina.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Roslina.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Swiat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Swiat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Symulacja.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Symulacja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Zwierze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pl/edu/pg/eti/ksg/po/silnik/Zwierze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zapis.txt" beforeDir="false" afterPath="$PROJECT_DIR$/zapis.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -243,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651598295153</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Stan na 03.05 U3">
+      <created>1651602470068</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1651602470068</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,7 +258,8 @@
     <MESSAGE value="Stan na 02.05." />
     <MESSAGE value="Stan na 03.05." />
     <MESSAGE value="Stan na 03.05" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stan na 03.05" />
+    <MESSAGE value="Stan na 03.05 U3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stan na 03.05 U3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

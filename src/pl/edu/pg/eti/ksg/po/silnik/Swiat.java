@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -31,7 +33,7 @@ public class Swiat {
     private List<Organizm> dzieci = new LinkedList<>();
     private int tura;
     private long seed;
-    private boolean gra;
+    private int czlowiek_dx = 0, czlowiek_dy = 0;
 
     //////////////Aplikacja/////////////
     private final JFrame okno = new JFrame();
@@ -48,7 +50,6 @@ public class Swiat {
         plansza = new char[Y][X];
         seed = System.currentTimeMillis();
         tura = 0;
-        gra = true;
         rand.setSeed(seed);
         dodajOrganizmy(dodajBazoweOrganizmy());
         inicjujGuziki();
@@ -98,9 +99,7 @@ public class Swiat {
             }
             zapis.println("[org]");
             zapis.println("[stan]");
-
             zapis.close();
-
         }catch (IOException ignored){}
     }
 
@@ -153,7 +152,6 @@ public class Swiat {
             if(N.GetWiek() > 1 && N.CzyZyje())
                 N.akcja();
         }
-
     }
 
     public void nowaTura(){
@@ -338,19 +336,32 @@ public class Swiat {
         return L;
     }
 
-    ///////////////////////////////////////
-
-    public void test(){
-        System.out.println("TEST");
+    private Color kolorowanieMapy(int y, int x){
+        char punkt = plansza[y][x];
+        return switch (punkt) {
+            case 'W' -> new Color(204, 204, 204); //wilk
+            case 'A' -> new Color(153, 102, 0);
+            case 'L' -> Color.ORANGE;
+            case 'O' -> Color.WHITE;
+            case 'C' -> Color.PINK;
+            case 'Z' -> Color.GRAY;
+            case '&' -> Color.RED; //guarana
+            case '#' -> new Color(0, 102, 0);
+            case '%' -> new Color(102, 0, 153);
+            case '$' -> new Color(0, 255, 51);
+            case '*' -> Color.YELLOW;
+            default -> null;
+        };
     }
+
+    ///////////////////////////////////////
 
     private void aktualizujMape(){
         char[][] plansza = GetPlansza();
         for(int y = 0; y < wymY; y++){
             for(int x = 0; x < wymX; x++){
                 elemMapy[y][x].setText(""+plansza[y][x]);
-                //if(plansza[y][x] == ' ')
-
+                elemMapy[y][x].setBackground(kolorowanieMapy(y, x));
             }
         }
     }
@@ -361,18 +372,15 @@ public class Swiat {
         InitTuraGuzik();
         InitZapisGuzik();
         InitOdczytGuzik();
-        // tekst.append("rtdetg");
-        //tekst.setEditable(false);
-        // sterowanie.add(tekst);
     }
 
     private void inicjujOkno(){
         splitpanel.setLeftComponent(mapa);
         splitpanel.setRightComponent(sterowanie);
-        splitpanel.setRightComponent(sterowanie);
         okno.setContentPane(splitpanel);
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         okno.setTitle("Symulator swiata");
+        okno.addKeyListener(new SluchaczKlawiatury());
         okno.pack();
         okno.setSize(1280, 700);
     }
@@ -394,6 +402,7 @@ public class Swiat {
         odczyt.setFocusable(false);
         odczyt.setText("Wczytaj");
         odczyt.addActionListener(new SluchaczOdczytu());
+       // odczyt.setBackground(Color)
         sterowanie.add(odczyt);
     }
 
@@ -427,6 +436,7 @@ public class Swiat {
         @Override
         public void actionPerformed(ActionEvent e) {
             zapiszSwiat();
+            okno.setTitle("Zapisano ture "+GetTura());
         }
     }
 
@@ -436,7 +446,7 @@ public class Swiat {
             wczytajSwiat();
             rysujSwiat();
             aktualizujMape();
-            okno.setTitle("Tura "+GetTura());
+            okno.setTitle("Wczytano ture "+GetTura());
         }
     }
 
@@ -474,10 +484,12 @@ public class Swiat {
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            for(int i = 0; i < 10; i++){
-                nowyOrg[i].addActionListener(new SluchaczDodawaniaKonkretnegoOrganizmu(i));
+            if(plansza[y][x] == ' ') {
+                for (int i = 0; i < 10; i++) {
+                    nowyOrg[i].addActionListener(new SluchaczDodawaniaKonkretnegoOrganizmu(i));
+                }
+                dodawanie.setVisible(true);
             }
-            dodawanie.setVisible(true);
         }
         private class SluchaczDodawaniaKonkretnegoOrganizmu implements ActionListener{
             private final int id;
@@ -492,5 +504,35 @@ public class Swiat {
                 dodawanie.setVisible(false);
             }
         }
+    }
+
+    private class SluchaczKlawiatury implements KeyListener{
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_LEFT) {
+                czlowiek_dx = -1;
+                System.out.println("LEWO");
+            }
+
+            if (key == KeyEvent.VK_RIGHT) {
+                czlowiek_dx = 1;
+                System.out.println("PRAWO");
+            }
+
+            if (key == KeyEvent.VK_UP) {
+                czlowiek_dy = -1;
+                System.out.println("GORA");
+            }
+
+            if (key == KeyEvent.VK_DOWN) {
+                czlowiek_dy = 1;
+                System.out.println("DOL");
+            }
+        }
+        @Override
+        public void keyReleased(KeyEvent e) {}
+        @Override
+        public void keyTyped(KeyEvent e) {}
     }
 }
