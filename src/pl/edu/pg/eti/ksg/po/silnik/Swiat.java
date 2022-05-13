@@ -15,8 +15,7 @@ import java.util.*;
 import java.util.List;
 
 public class Swiat {
-    //zaimplementowac ruch czlowieka, listener wydarzen
-    //zdebugowac dodawanie, barszcz i sortowanie
+    //sortowanie??
     ////////////////Organizmy/////////////////
     public static final int WIEK_ROZMNAZANIA = 2;
     public static final int SZANSA_JAGODY = 3;
@@ -40,7 +39,6 @@ public class Swiat {
     private JButton[][] elemMapy;
     private final JPanel mapa = new JPanel();
     private final JPanel sterowanie = new JPanel();
-    private JTextArea tekst;
     private final JSplitPane splitpanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 
     ////////////////////////////////////////////
@@ -155,8 +153,8 @@ public class Swiat {
     }
 
     public void nowaTura(){
-        rysujSwiat();
         wykonajTure();
+        rysujSwiat();
     }
 
     public void symuluj(){
@@ -316,7 +314,6 @@ public class Swiat {
         L.add(new Owca(1, 0));
         L.add(new Owca(0, 1));
         L.add(new BarszczSosnowskiego(4, 0));
-        L.add(new BarszczSosnowskiego(0, 4));
         L.add(new BarszczSosnowskiego(3, 4));
         L.add(new Lis(5, 4));
         L.add(new Lis(4, 3));
@@ -352,6 +349,14 @@ public class Swiat {
             case '*' -> Color.YELLOW;
             default -> null;
         };
+    }
+
+    public int GetCzlowiekDX(){
+        return czlowiek_dx;
+    }
+
+    public int GetCzlowiekDY(){
+        return czlowiek_dy;
     }
 
     ///////////////////////////////////////
@@ -512,22 +517,28 @@ public class Swiat {
             int key = e.getKeyCode();
             if (key == KeyEvent.VK_LEFT) {
                 czlowiek_dx = -1;
+                czlowiek_dy = 0;
                 System.out.println("LEWO");
             }
-
-            if (key == KeyEvent.VK_RIGHT) {
+            else if (key == KeyEvent.VK_RIGHT) {
                 czlowiek_dx = 1;
+                czlowiek_dy = 0;
                 System.out.println("PRAWO");
             }
-
-            if (key == KeyEvent.VK_UP) {
+            else if (key == KeyEvent.VK_UP) {
                 czlowiek_dy = -1;
+                czlowiek_dx = 0;
                 System.out.println("GORA");
             }
-
-            if (key == KeyEvent.VK_DOWN) {
+            else if (key == KeyEvent.VK_DOWN) {
                 czlowiek_dy = 1;
+                czlowiek_dx = 0;
                 System.out.println("DOL");
+            }
+            else if (key == KeyEvent.VK_U) {
+                czlowiek_dx = KeyEvent.VK_U;
+                czlowiek_dy = KeyEvent.VK_U;
+                System.out.println("ULT");
             }
         }
         @Override

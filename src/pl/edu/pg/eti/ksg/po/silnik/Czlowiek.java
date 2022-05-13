@@ -1,5 +1,7 @@
 package pl.edu.pg.eti.ksg.po.silnik;
 
+import java.awt.event.KeyEvent;
+
 public class Czlowiek extends Zwierze{
     private int czasTrwania;
     private boolean czyAktywnaUmj;
@@ -16,7 +18,6 @@ public class Czlowiek extends Zwierze{
         czasOczewiw = 0;
         czyMoze = true;
         swiat = wsk;
-        //sym = swiat.GetSymulacja();
     }
     public Czlowiek(int posY, int posX, int wiek, Swiat wsk) {
         this(posY, posX, wsk);
@@ -25,8 +26,12 @@ public class Czlowiek extends Zwierze{
 
     @Override
     public void nowaPozycja(){
-        int dy = 0, dx= 1;
-        //sym.nasluchujRuchu();
+        if(swiat.GetCzlowiekDX() == KeyEvent.VK_U && czyMoze) {
+            System.out.println("Czlowiek pije magiczny eliksir");
+            wypijMagicznyEliksir();
+            return;
+        }
+        int dy = swiat.GetCzlowiekDY(), dx= swiat.GetCzlowiekDX();
         if (swiat.sprawdzPoprawnoscWspolrzednych(x + dx, y + dy)) {
             nextX = x + dx;
             nextY = y + dy;
@@ -34,6 +39,7 @@ public class Czlowiek extends Zwierze{
             prevY = y;
         }
     }
+
     public void wypijMagicznyEliksir() {
         sila = 10;
         czyAktywnaUmj = true;
@@ -47,22 +53,19 @@ public class Czlowiek extends Zwierze{
             czasTrwania--;
             sila--;
             if (czasTrwania == 0){
-               // cout << "Zdolnosc przestala dzialac\n";
+               System.out.println("Zdolnosc przestala dzialac");
                 czyAktywnaUmj = false;
             }
         }
         else if (!czyMoze) {
             czasOczewiw--;
             if (czasOczewiw == 0) {
-               // cout << "Zdolnosc specjalna gotowa do uzycia\n";
+                System.out.println("Zdolnosc specjalna gotowa do uzycia");
                 czyMoze = true;
             }
         }
         super.nowaTura();
     }
-
-
-
 
     public char rysowanie()  {
         return 'C';
