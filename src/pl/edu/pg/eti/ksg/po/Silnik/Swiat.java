@@ -29,7 +29,7 @@ public class Swiat {
     private int wymY;
     private Czlowiek czlowiek = null;
     private List<Organizm> organizm;
-    private List<Organizm> dzieci = new LinkedList<>();
+    private final List<Organizm> dzieci = new LinkedList<>();
     private int tura;
     private long seed;
     private int czlowiek_dx = 0, czlowiek_dy = 0;
@@ -56,22 +56,6 @@ public class Swiat {
 
     public char[][] GetPlansza(){
         return plansza;
-    }
-
-    private void wyczyscMape(){
-        for(int y = 0; y < wymY; y++){
-            for(int x = 0; x < wymX; x++){
-                plansza[y][x] = ' ';
-            }
-        }
-    }
-
-    private void naniesOrganizmyNaMape(){
-        for(Organizm N : organizm){
-            if(N.CzyZyje()){
-                plansza[N.GetY()][N.GetX()] = N.rysowanie();
-            }
-        }
     }
 
     public void dodajOrganizmy(List<Organizm> L){
@@ -110,8 +94,7 @@ public class Swiat {
             ArrayList<String> komendy = new ArrayList<>();
             while ((strLine = br.readLine()) != null)   {
                 String[] tokens = strLine.split(" ");
-                for (String individual : tokens)
-                    komendy.add(individual);
+                komendy.addAll(Arrays.asList(tokens));
             }
             wczytajGre(komendy);
             in.close();
@@ -182,14 +165,15 @@ public class Swiat {
         dzieci.add(nowy);
     }
 
-    private void zarzadzajOrganizmami(){
-        organizm.addAll(dzieci);
-        organizm.removeIf(N -> !N.CzyZyje());
-        dzieci.clear();
-        organizm.sort(Organizm::porownajOrganizmy);
+    public int GetCzlowiekDX(){
+        return czlowiek_dx;
     }
 
-    public void dodajNowyOrganizmNa(int id, int y, int x){
+    public int GetCzlowiekDY(){
+        return czlowiek_dy;
+    }
+
+    private void dodajNowyOrganizmNa(int id, int y, int x){
         Organizm N = null;
         switch (id) {
             case 0 -> N = new Wilk(y, x);
@@ -308,6 +292,47 @@ public class Swiat {
         }
     }
 
+    private void zarzadzajOrganizmami(){
+        organizm.addAll(dzieci);
+        organizm.removeIf(N -> !N.CzyZyje());
+        dzieci.clear();
+        organizm.sort(Organizm::porownajOrganizmy);
+    }
+
+    private void naniesOrganizmyNaMape(){
+        for(Organizm N : organizm){
+            if(N.CzyZyje()){
+                plansza[N.GetY()][N.GetX()] = N.rysowanie();
+            }
+        }
+    }
+
+    private Color kolorowanieMapy(int y, int x){
+        char punkt = plansza[y][x];
+        return switch (punkt) {
+            case 'W' -> new Color(204, 204, 204); //wilk
+            case 'A' -> new Color(153, 102, 0);
+            case 'L' -> Color.ORANGE;
+            case 'O' -> Color.WHITE;
+            case 'C' -> Color.PINK;
+            case 'Z' -> Color.GRAY;
+            case '&' -> Color.RED; //guarana
+            case '#' -> new Color(0, 102, 0);
+            case '%' -> new Color(102, 0, 153);
+            case '$' -> new Color(0, 255, 51);
+            case '*' -> Color.YELLOW;
+            default -> null;
+        };
+    }
+
+    private void wyczyscMape(){
+        for(int y = 0; y < wymY; y++){
+            for(int x = 0; x < wymX; x++){
+                plansza[y][x] = ' ';
+            }
+        }
+    }
+
     private List<Organizm> dodajBazoweOrganizmy() {
         List<Organizm> L = new LinkedList<>();
         L.add(new Czlowiek(0, 0, this));
@@ -331,32 +356,6 @@ public class Swiat {
         L.add(new Wilk(3, 6));
         L.add(new Wilk(3, 5));
         return L;
-    }
-
-    private Color kolorowanieMapy(int y, int x){
-        char punkt = plansza[y][x];
-        return switch (punkt) {
-            case 'W' -> new Color(204, 204, 204); //wilk
-            case 'A' -> new Color(153, 102, 0);
-            case 'L' -> Color.ORANGE;
-            case 'O' -> Color.WHITE;
-            case 'C' -> Color.PINK;
-            case 'Z' -> Color.GRAY;
-            case '&' -> Color.RED; //guarana
-            case '#' -> new Color(0, 102, 0);
-            case '%' -> new Color(102, 0, 153);
-            case '$' -> new Color(0, 255, 51);
-            case '*' -> Color.YELLOW;
-            default -> null;
-        };
-    }
-
-    public int GetCzlowiekDX(){
-        return czlowiek_dx;
-    }
-
-    public int GetCzlowiekDY(){
-        return czlowiek_dy;
     }
 
     ///////////////////////////////////////
