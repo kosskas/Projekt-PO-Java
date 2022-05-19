@@ -2,7 +2,7 @@ package pl.edu.pg.eti.ksg.po.Rosliny;
 
 import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
 import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Roslina;
-import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
 
 public class Trawa extends Roslina {
     public Trawa(int posY, int posX) {

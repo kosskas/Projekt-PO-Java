@@ -1,4 +1,4 @@
-package pl.edu.pg.eti.ksg.po.Silnik.Aplikacja;
+package pl.edu.pg.eti.ksg.po.Silnik;
 
 import pl.edu.pg.eti.ksg.po.Rosliny.*;
 import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
@@ -415,23 +415,23 @@ public class Swiat {
 
     private void InitHexMapa() {
         elemMapy = new HexButton[wymY][wymX];
-        int offsetX = -5;
-        int offsetY = 0;
+        int pomX = -5;
+        int pomY = 0;
 
         for(int y = 0; y < wymY; y++) {
             for(int x = 0; x < wymX; x++){
                 elemMapy[x][y] = new HexButton();
                 elemMapy[x][y].addActionListener(new SluchaczDodawaniaOrganizmu(x, y));
                 mapa.add(elemMapy[x][y]);
-                elemMapy[x][y].setBounds(offsetY, offsetX, 47, 52);
-                offsetX += 44;
+                elemMapy[x][y].setBounds(pomY, pomX, 47, 52);
+                pomX += 44;
             }
             if(y%2 == 0) {
-                offsetX = -26;
+                pomX = -26;
             } else {
-                offsetX = -5;
+                pomX = -5;
             }
-            offsetY += 38;
+            pomY += 38;
         }
     }
 

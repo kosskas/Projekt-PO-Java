@@ -1,7 +1,6 @@
 package pl.edu.pg.eti.ksg.po.Silnik.Organizm;
 
-import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
-import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
 
 public abstract class PojedynczyOrganizm implements Organizm {
     protected int sila;
@@ -77,7 +76,6 @@ public abstract class PojedynczyOrganizm implements Organizm {
     public int GetWiek(){
         return wiek;
     }
-    @Override
     public int porownajOrganizmy(Organizm drugi){
         if(inicjatywa > drugi.GetInicjatywa())
             return 1;
