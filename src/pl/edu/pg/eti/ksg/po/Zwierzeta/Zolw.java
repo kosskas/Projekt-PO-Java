@@ -1,8 +1,8 @@
 package pl.edu.pg.eti.ksg.po.Zwierzeta;
 
-import pl.edu.pg.eti.ksg.po.Silnik.Organizm;
-import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
-import pl.edu.pg.eti.ksg.po.Silnik.Zwierze;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Zwierze;
 
 public class Zolw extends Zwierze {
     public Zolw(int posY, int posX) {

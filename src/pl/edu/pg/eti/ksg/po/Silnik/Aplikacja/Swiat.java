@@ -1,6 +1,7 @@
-package pl.edu.pg.eti.ksg.po.Silnik;
+package pl.edu.pg.eti.ksg.po.Silnik.Aplikacja;
 
 import pl.edu.pg.eti.ksg.po.Rosliny.*;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
 import pl.edu.pg.eti.ksg.po.Zwierzeta.*;
 
 import javax.swing.*;
@@ -15,7 +16,6 @@ import java.util.*;
 import java.util.List;
 
 public class Swiat {
-    //sortowanie??
     ////////////////Organizmy/////////////////
     public static final int WIEK_ROZMNAZANIA = 2;
     public static final int SZANSA_JAGODY = 3;
@@ -40,6 +40,7 @@ public class Swiat {
     private final JPanel mapa = new JPanel();
     private final JPanel sterowanie = new JPanel();
     private final JSplitPane splitpanel = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+    private boolean czyHex = false;
 
     ////////////////////////////////////////////
     public Swiat(int Y, int X) {
@@ -371,11 +372,11 @@ public class Swiat {
     }
 
     private void inicjujGuziki(){
-        mapa.setLayout(new GridLayout(wymY+ 1, wymX));
-        InitMapa();
+        InitPlansza();
         InitTuraGuzik();
         InitZapisGuzik();
         InitOdczytGuzik();
+        InitAbstrakcjaGuzik();
     }
 
     private void inicjujOkno(){
@@ -386,10 +387,21 @@ public class Swiat {
         okno.setTitle("Symulator swiata");
         okno.addKeyListener(new SluchaczKlawiatury());
         okno.pack();
-        okno.setSize(1280, 700);
+        okno.setSize(1280, 980);
     }
 
-    private void InitMapa(){
+    private void InitPlansza(){
+        mapa.setLayout(null);
+        if(czyHex){
+            InitHexMapa();
+        }
+        else{
+            mapa.setLayout(new GridLayout(wymY+ 1, wymX));
+            InitDecMapa();
+        }
+    }
+
+    private void InitDecMapa(){
         elemMapy = new JButton[wymY][wymX];
         for(int y = 0; y < wymY; y++){
             for(int x = 0; x < wymX; x++){
@@ -398,6 +410,28 @@ public class Swiat {
                 elemMapy[y][x].addActionListener(new SluchaczDodawaniaOrganizmu(y, x));
                 mapa.add(elemMapy[y][x]);
             }
+        }
+    }
+
+    private void InitHexMapa() {
+        elemMapy = new HexButton[wymY][wymX];
+        int offsetX = -5;
+        int offsetY = 0;
+
+        for(int y = 0; y < wymY; y++) {
+            for(int x = 0; x < wymX; x++){
+                elemMapy[x][y] = new HexButton();
+                elemMapy[x][y].addActionListener(new SluchaczDodawaniaOrganizmu(x, y));
+                mapa.add(elemMapy[x][y]);
+                elemMapy[x][y].setBounds(offsetY, offsetX, 47, 52);
+                offsetX += 44;
+            }
+            if(y%2 == 0) {
+                offsetX = -26;
+            } else {
+                offsetX = -5;
+            }
+            offsetY += 38;
         }
     }
 
@@ -426,6 +460,20 @@ public class Swiat {
         sterowanie.add(nowaTura);
     }
 
+    private void InitAbstrakcjaGuzik(){
+        JButton abstrakcja = new JButton();
+        abstrakcja.setFocusable(false);
+        abstrakcja.setText("Zmien abstrakcje");
+        abstrakcja.addActionListener(new SluchaczAbstrakcji());
+        sterowanie.add(abstrakcja);
+    }
+
+    private void zmienAbstrakcje(){
+        czyHex = !czyHex;
+        mapa.removeAll();
+        InitPlansza();
+    }
+
     private class SluchaczNowejTury implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -450,6 +498,16 @@ public class Swiat {
             rysujSwiat();
             aktualizujMape();
             okno.setTitle("Wczytano ture "+GetTura());
+        }
+    }
+
+    private class SluchaczAbstrakcji implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            zmienAbstrakcje();
+            rysujSwiat();
+            aktualizujMape();
+            okno.setTitle("Zmieniono abstrakcje");
         }
     }
 

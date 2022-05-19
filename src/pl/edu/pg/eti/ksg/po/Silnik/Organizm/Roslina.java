@@ -1,6 +1,9 @@
-package pl.edu.pg.eti.ksg.po.Silnik;
+package pl.edu.pg.eti.ksg.po.Silnik.Organizm;
 
-public abstract class Roslina extends PojedynczyOrganizm{
+import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
+import pl.edu.pg.eti.ksg.po.Zwierzeta.PojedynczyOrganizm;
+
+public abstract class Roslina extends PojedynczyOrganizm {
     protected int szansaSiewu;
     public Roslina(int s){
         sila = s;

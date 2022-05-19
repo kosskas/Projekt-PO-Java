@@ -1,6 +1,9 @@
-package pl.edu.pg.eti.ksg.po.Silnik;
+package pl.edu.pg.eti.ksg.po.Zwierzeta;
 
-public abstract class PojedynczyOrganizm implements Organizm{
+import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
+
+public abstract class PojedynczyOrganizm implements Organizm {
     protected int sila;
     protected int inicjatywa;
     protected int wiek;

@@ -1,8 +1,8 @@
 package pl.edu.pg.eti.ksg.po.Rosliny;
 
-import pl.edu.pg.eti.ksg.po.Silnik.Organizm;
-import pl.edu.pg.eti.ksg.po.Silnik.Roslina;
-import pl.edu.pg.eti.ksg.po.Silnik.Swiat;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Organizm;
+import pl.edu.pg.eti.ksg.po.Silnik.Organizm.Roslina;
+import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
 
 public class BarszczSosnowskiego extends Roslina {
     private final Organizm[] sasiad = new Organizm[8];
