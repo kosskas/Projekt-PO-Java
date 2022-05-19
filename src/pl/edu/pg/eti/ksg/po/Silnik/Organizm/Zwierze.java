@@ -1,7 +1,6 @@
 package pl.edu.pg.eti.ksg.po.Silnik.Organizm;
 
 import pl.edu.pg.eti.ksg.po.Silnik.Aplikacja.Swiat;
-import pl.edu.pg.eti.ksg.po.Zwierzeta.PojedynczyOrganizm;
 
 public abstract class Zwierze extends PojedynczyOrganizm {
     protected int nextX;
