@@ -20,7 +20,7 @@ public class Swiat {
     public static final int WIEK_ROZMNAZANIA = 2;
     public static final int SZANSA_JAGODY = 3;
     public static final int SZANSA_BARSZCZ = 1;
-    public static final int SZANSA_MLECZ = 2;
+    public static final int SZANSA_MLECZ = 1;
     public static final int SZANSA_GUARANA = 2;
     public static final int SZANSA_TRAWA = 3;
     public static final Random rand = new Random();
@@ -106,6 +106,10 @@ public class Swiat {
     public void rysujSwiat(){
         wyczyscMape();
         naniesOrganizmyNaMape();
+    }
+
+    public boolean isCzyHex(){
+        return czyHex;
     }
 
     public int GetX() {
@@ -415,18 +419,22 @@ public class Swiat {
 
     private void InitHexMapa() {
         elemMapy = new HexButton[wymY][wymX];
+
         int pomX = -5;
         int pomY = 0;
 
-        for(int y = 0; y < wymY; y++) {
-            for(int x = 0; x < wymX; x++){
-                elemMapy[x][y] = new HexButton();
-                elemMapy[x][y].addActionListener(new SluchaczDodawaniaOrganizmu(x, y));
-                mapa.add(elemMapy[x][y]);
-                elemMapy[x][y].setBounds(pomY, pomX, 47, 52);
+        for(int x = 0; x < wymX; x++) {
+            for(int y = 0; y < wymY; y++){
+                elemMapy[y][x] = new HexButton();
+                elemMapy[y][x].addActionListener(new SluchaczDodawaniaOrganizmu(y, x));
+                int finalY = y;
+                int finalX = x;
+                elemMapy[y][x].addActionListener(e -> System.out.println(finalY +" "+ finalX));
+                mapa.add(elemMapy[y][x]);
+                elemMapy[y][x].setBounds(pomY, pomX, 47, 52);
                 pomX += 44;
             }
-            if(y%2 == 0) {
+            if(x%2 == 0) {
                 pomX = -26;
             } else {
                 pomX = -5;

@@ -8,6 +8,8 @@ public class BarszczSosnowskiego extends Roslina {
     private final Organizm[] sasiad = new Organizm[8];
     public BarszczSosnowskiego(int posY, int posX) {
         super(10);
+        for(int i = 0; i < 8; i++)
+            sasiad[i] = null;
         x = posX;
         y = posY;
         szansaSiewu = Swiat.SZANSA_BARSZCZ;
@@ -55,6 +57,8 @@ public class BarszczSosnowskiego extends Roslina {
         for(int dy = -1; dy <= 1; dy++){
             for(int dx = -1; dx <= 1; dx++) {
                 if(dy == 0 && dx ==0)
+                    continue;
+                if(swiat.isCzyHex() && ((dy == 1 && dx == 1) || (dy == 1 && dx == -1)))
                     continue;
                 sasiad[index] = swiat.pobierzWspolrzedne(y + dy, x + dx);
                 index++;

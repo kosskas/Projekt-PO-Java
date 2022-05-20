@@ -30,10 +30,16 @@ public abstract class Zwierze extends PojedynczyOrganizm {
         }
     }
     public void nowaPozycja(){
-        int dx = 1;
-        int dy = 1;
+        int dx = -1;
+        int dy = -1;
         dx = Math.abs(Swiat.rand.nextInt()) % 3 -1;
         dy = Math.abs(Swiat.rand.nextInt()) % 3 -1;;
+        if(swiat.isCzyHex()){
+            while ((dy == 1 && dx == 1) || (dy == 1 && dx == -1)){
+                dx = Math.abs(Swiat.rand.nextInt()) % 3 -1;
+                dy = Math.abs(Swiat.rand.nextInt()) % 3 -1;;
+            }
+        }
         if (swiat.sprawdzPoprawnoscWspolrzednych(y + dy, x + dx)) {
             nextX = x + dx;
             nextY = y + dy;

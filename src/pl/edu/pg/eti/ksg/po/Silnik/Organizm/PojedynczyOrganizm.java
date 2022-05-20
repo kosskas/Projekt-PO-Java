@@ -23,6 +23,8 @@ public abstract class PojedynczyOrganizm implements Organizm {
         if (wiek > Swiat.WIEK_ROZMNAZANIA && drugi.GetWiek() > Swiat.WIEK_ROZMNAZANIA) {
             for (int dy = -1; dy <= 1; dy++) {
                 for (int dx = -1; dx <= 1; dx++) {
+                    if(swiat.isCzyHex() && ((dy == 1 && dx == 1) || (dy == 1 && dx == -1)))
+                        continue;
                     Organizm dziecko = swiat.pobierzWspolrzedne(y + dy, x + dx);
                     if (dziecko == null && swiat.sprawdzPoprawnoscWspolrzednych(y + dy, x + dx)) {
                         dziecko = stworzNowy(y + dy, x + dx);
